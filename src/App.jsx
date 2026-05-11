@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Music, Pause, Play, Sparkles } from 'lucide-react';
-import Hero from './components/Hero';
-import Message from './components/Message';
-import Counter from './components/Counter';
-import Timeline from './components/Timeline';
-import Gallery from './components/Gallery';
-import Footer from './components/Footer';
-import Particles from './components/Particles';
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Heart, Music, Pause } from "lucide-react";
+import Hero from "./components/Hero";
+import Message from "./components/Message";
+import Counter from "./components/Counter";
+import Timeline from "./components/Timeline";
+import Gallery from "./components/Gallery";
+import Footer from "./components/Footer";
+import Particles from "./components/Particles";
+import Guestbook from "./components/Guestbook";
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -17,9 +18,10 @@ function App() {
   const startJourney = () => {
     setShowOverlay(false);
     if (audioRef.current) {
-      audioRef.current.play()
+      audioRef.current
+        .play()
         .then(() => setIsPlaying(true))
-        .catch(err => console.log("Audio play failed:", err));
+        .catch((err) => console.log("Audio play failed:", err));
     }
   };
 
@@ -44,26 +46,26 @@ function App() {
   return (
     <div className="app-container">
       <Particles />
-      
+
       <AnimatePresence>
         {showOverlay && (
           <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{
-              position: 'fixed',
+              position: "fixed",
               top: 0,
               left: 0,
-              width: '100%',
-              height: '100%',
-              background: 'var(--cream)',
+              width: "100%",
+              height: "100%",
+              background: "var(--cream)",
               zIndex: 3000,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-              padding: '20px'
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              padding: "20px",
             }}
           >
             <motion.div
@@ -71,25 +73,44 @@ function App() {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              <Heart size={60} color="#C41E3A" style={{ marginBottom: '30px' }} />
-              <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.5rem', color: '#2c2c2c', marginBottom: '10px' }}>
+              <Heart
+                size={60}
+                color="#C41E3A"
+                style={{ marginBottom: "30px" }}
+              />
+              <h1
+                className="ethiopic"
+                lang="am"
+                style={{
+                  fontFamily: "'Noto Sans Ethiopic', 'Playfair Display', serif",
+                  fontSize: "2.5rem",
+                  color: "#2c2c2c",
+                  marginBottom: "10px",
+                }}
+              >
                 ሃብትሽ ❤️ ማሚ
               </h1>
-              <p style={{ fontSize: '1.2rem', color: '#666', marginBottom: '40px' }}>
+              <p
+                style={{
+                  fontSize: "1.2rem",
+                  color: "#666",
+                  marginBottom: "40px",
+                }}
+              >
                 13 Years of Eternal Love
               </p>
               <button
                 onClick={startJourney}
                 style={{
-                  padding: '15px 40px',
-                  fontSize: '1.2rem',
-                  background: 'var(--gold)',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '50px',
-                  cursor: 'pointer',
-                  boxShadow: '0 10px 20px rgba(212, 175, 55, 0.3)',
-                  fontFamily: "'Playfair Display', serif"
+                  padding: "15px 40px",
+                  fontSize: "1.2rem",
+                  background: "var(--gold)",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "50px",
+                  cursor: "pointer",
+                  boxShadow: "0 10px 20px rgba(212, 175, 55, 0.3)",
+                  fontFamily: "'Playfair Display', serif",
                 }}
               >
                 በፍቅር ይክፈቱ (Open with Love)
@@ -104,9 +125,9 @@ function App() {
         <source src="/assets/music.m4a" type="audio/x-m4a" />
         <source src="/assets/music.m4a" type="audio/mp4" />
       </audio>
-      
-      <button 
-        className={`music-btn ${isPlaying ? 'playing' : ''}`} 
+
+      <button
+        className={`music-btn ${isPlaying ? "playing" : ""}`}
         onClick={toggleMusic}
         title="Toggle Anniversary Music"
       >
@@ -119,6 +140,7 @@ function App() {
         <Counter />
         <Timeline />
         <Gallery />
+        <Guestbook />
       </main>
 
       <Footer />
