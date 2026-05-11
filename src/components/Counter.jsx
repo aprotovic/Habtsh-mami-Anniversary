@@ -30,8 +30,13 @@ const CounterItem = ({ value, label, accent = false }) => {
       transition={{ duration: 0.6, ease: "easeOut" }}
       style={{
         textAlign: "center",
-        padding: "30px 20px",
+        padding: accent ? "30px 28px" : "30px 20px",
         borderRadius: "24px",
+        gridColumn: accent ? "1 / -1" : undefined,
+        justifySelf: accent ? "center" : undefined,
+        width: "100%",
+        maxWidth: accent ? "560px" : undefined,
+        minWidth: 0,
         background: accent
           ? "linear-gradient(135deg, rgba(212,175,55,0.18), rgba(196,30,58,0.08))"
           : "rgba(255, 255, 255, 0.75)",
@@ -44,12 +49,19 @@ const CounterItem = ({ value, label, accent = false }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: label === "Seconds" ? 0.25 : 0.45 }}
         style={{
-          fontSize: "clamp(2.3rem, 7vw, 4rem)",
+          fontSize: accent
+            ? "clamp(2.2rem, 8vw, 3.8rem)"
+            : "clamp(2.3rem, 7vw, 4rem)",
           fontWeight: 700,
           color: accent ? "var(--romantic-red)" : "var(--gold)",
           fontFamily: "'Playfair Display', serif",
           marginBottom: "10px",
           lineHeight: 1,
+          letterSpacing: accent ? "-0.04em" : undefined,
+          fontVariantNumeric: "tabular-nums",
+          whiteSpace: "nowrap",
+          maxWidth: "100%",
+          overflow: "hidden",
         }}
       >
         {value.toLocaleString()}
